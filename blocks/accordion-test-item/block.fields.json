@@ -1,0 +1,19 @@
+{
+  "controls": [
+    {
+      "id": "panel_item",
+      "type": "group",
+      "label": "Item",
+      "controlsGroup": "settings"
+    },
+    {
+      "id": "ctrl_question",
+      "type": "text",
+      "label": "Question",
+      "attributeKey": "question",
+      "default": "",
+      "controlsGroup": "settings",
+      "parentPanelId": "panel_item"
+    }
+  ]
+}

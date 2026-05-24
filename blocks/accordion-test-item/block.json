@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gcb/accordion-test-item",
+  "title": "Accordion Item (React test)",
+  "category": "widgets",
+  "icon": "list-view",
+  "description": "Single accordion entry. Only valid inside the React-test accordion.",
+  "keywords": ["test", "accordion-item"],
+  "textdomain": "gcb",
+  "attributes": {},
+  "supports": {}
+}
