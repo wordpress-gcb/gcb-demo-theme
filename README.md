@@ -1,54 +1,39 @@
-# gcb-demo-theme
+# GCB Abstrak — demo theme
 
-Minimal WordPress theme that ships the demo block schemas used by
-[gcb-lite](https://github.com/wordpress-gcb/gutenberg-control-blocks-lite).
+A WordPress theme that **only registers content**. It doesn't render
+anything — the public site lives in a separate Next.js frontend
+([`gcb-next-starter`](https://github.com/wordpress-gcb/gcb-next-starter))
+that reads from this install's REST API.
 
-This is **not** intended as a production theme. It exists so the live
-demo at https://gcb-next-starter.vercel.app/ has a real WordPress
-backend to fetch content from.
+Pair with the [gcb-lite](https://github.com/wordpress-gcb/gutenberg-control-blocks-lite)
+plugin (required — registers the typed-field controls this theme attaches
+to each CPT).
 
-## What's in here
+## What it ships
 
-- `style.css`, `index.php`, `functions.php` — the minimum required for
-  WordPress to treat this as a theme.
-- `blocks/` — eight block schemas (`block.json` + `block.fields.json`)
-  that gcb-lite's `BlockLoader` auto-discovers:
-  - `accordion-test`, `accordion-test-item`, `text-image`, `gallery-test`
-    (reference blocks)
-  - `hero`, `feature-trio`, `feature-item`, `cta` (marketing blocks)
+- **`project` CPT** — portfolio / case-study items, with `cover` image
+  field + `live_url`. Categorised via the `project_category` taxonomy.
+- **`testimonial` CPT** — single-quote records. `quote`, `author_name`,
+  `author_role`, `author_image`, `from_label`, `from_logo`.
+- **`brand` CPT** — logo strip entries. Just `logo` + `website`.
+- **`theme.json`** — the Abstrak palette (Primary `#5956E9`, four
+  gradients, full grayscale), DM Sans / Poppins typography, and a 7-step
+  spacing scale. Block editor pickers (Colour, Font size, Spacing) all
+  read from this.
 
-No `render.php` files — every block is rendered by the React frontend
-([gcb-next-starter](https://github.com/wordpress-gcb/gcb-next-starter))
-via the gcb-lite plugin's component-server contract.
+## Install
 
-## Deploy
+In the Playground blueprint or any WordPress install, copy
+`examples/themes/gcb-abstrak/` into `wp-content/themes/` and activate
+it. The companion `gcb-lite` plugin must be active first.
 
-Pushes to `main` auto-deploy to Kinsta via `.github/workflows/deploy.yml`.
-That workflow needs five repository secrets configured under
-**Settings → Secrets and variables → Actions**:
+## What's intentionally NOT here
 
-| Secret              | What it is                                                |
-|---------------------|-----------------------------------------------------------|
-| `SSH_PRIVATE_KEY`   | Private half of an SSH keypair authorized on Kinsta       |
-| `SSH_HOST`          | Kinsta SSH host (e.g. `11.22.33.44`)                       |
-| `SSH_PORT`          | Kinsta SSH port (often non-22)                            |
-| `SSH_USER`          | Kinsta SSH user                                            |
-| `REMOTE_THEME_PATH` | Absolute path on Kinsta, e.g. `/www/site_123/public/wp-content/themes/gcb-demo-theme` |
+- No PHP templates beyond a placeholder `index.php`. If you load the
+  site root in a browser you'll see a "use the React frontend" page.
+- No editor stylesheet — `theme.json` gives the block editor the right
+  palette / fonts / sizes on its own.
+- No header/footer template-parts. The React frontend owns layout.
 
-First-time setup: generate the keypair with `ssh-keygen -t ed25519`,
-add the public half to Kinsta's SSH Access panel, paste the private
-half into `SSH_PRIVATE_KEY`. Test locally first with `ssh -p $PORT
-$USER@$HOST` before relying on the workflow.
-
-## After deployment
-
-1. wp-admin → **Appearance → Themes** → activate **GCB Demo Theme**.
-2. Confirm at `https://yoursite/?rest_route=/gcblite/v1/blocks` that the
-   eight blocks appear in the response.
-3. Author a page using the blocks. The Next.js demo at
-   gcb-next-starter.vercel.app fetches that page over the REST API and
-   renders it through the matching React components.
-
-## License
-
-GPL-2.0-or-later. See [LICENSE](./LICENSE).
+If you want a fully WP-rendered demo (no React, server-rendered HTML)
+that's a different theme — file an issue and let's discuss.

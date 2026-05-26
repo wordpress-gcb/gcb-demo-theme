@@ -1,30 +1,29 @@
 <?php
 /**
- * GCB Demo Theme — index template.
+ * Minimum-viable template — WordPress requires an index.php in every
+ * theme. This theme is intended to be paired with a headless React
+ * frontend (gcb-next-starter), so the public site is rendered there,
+ * not here. The wp-admin side and REST API are what matter.
  *
- * Intentionally minimal. The public frontend for this theme is the
- * Next.js app at https://gcb-next-starter.vercel.app/. WordPress is
- * the CMS; the React app is the renderer.
+ * If you're hitting this template in a browser you've probably loaded
+ * the WP install directly instead of the React frontend — point your
+ * Next.js GCBLITE_WP_URL at this install and visit the React site
+ * instead.
  *
- * If someone hits the WP frontend directly (no Next.js in front), they
- * get a plain page with a redirect notice rather than blank output.
- *
- * @package GCB_Demo_Theme
+ * @package GCB_Abstrak
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-get_header(); ?>
-<main style="max-width:42rem;margin:4rem auto;padding:0 1.5rem;font-family:system-ui,sans-serif;line-height:1.6;color:#1a1a1a;">
-    <h1 style="font-size:1.75rem;margin-bottom:1rem;">GCB Demo</h1>
-    <p>This WordPress install backs the live demo at
-        <a href="https://gcb-next-starter.vercel.app/">gcb-next-starter.vercel.app</a>.</p>
-    <p>The Next.js frontend fetches pages from this install over the REST
-        API and renders them with React. Try
-        <a href="<?php echo esc_url(rest_url('wp/v2/pages')); ?>">/wp-json/wp/v2/pages</a> or
-        <a href="<?php echo esc_url(rest_url('gcblite/v1/blocks')); ?>">/wp-json/gcblite/v1/blocks</a>
-        to see the data the frontend consumes.</p>
+get_header();
+?>
+<main style="font-family: -apple-system, sans-serif; max-width: 640px; margin: 4rem auto; padding: 0 1.5rem; line-height: 1.5; color: #292930;">
+    <h1 style="color: #5956E9;">GCB Abstrak — WordPress backend</h1>
+    <p>This WordPress install is the editorial backend for a headless React frontend. The public site is rendered separately (Next.js, served from Vercel or wherever <code>gcb-next-starter</code> is deployed).</p>
+    <p>If you arrived here by accident, point the <code>GCBLITE_WP_URL</code> env var of your React frontend at this install and browse there instead.</p>
+    <p>Editor-side access: <a href="<?php echo esc_url(admin_url()); ?>">/wp-admin</a></p>
 </main>
-<?php get_footer();
+<?php
+get_footer();
