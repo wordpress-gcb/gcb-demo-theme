@@ -3,7 +3,7 @@
  * Theme footer — closes <main>, emits the React SiteFooter placeholder,
  * and runs wp_footer.
  *
- * @package GCB_Abstrak
+ * @package GCB_SaaS_Theme
  */
 ?>
 </main>

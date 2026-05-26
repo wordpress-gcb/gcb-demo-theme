@@ -1,6 +1,6 @@
 <?php
 /**
- * Abstrak Icon Accordion Item — a single row of the parent accordion.
+ * Saas Icon Accordion Item — a single row of the parent accordion.
  *
  * Public-side: collapsed by default; click the title button to expand.
  * Editor side: rendered as a static (always-visible) row so authors can
@@ -21,8 +21,8 @@ $props = [
 ];
 
 $wrap = get_block_wrapper_attributes([
-    'class'           => 'gcb-abstrak-icon-accordion-item',
-    'data-block-name' => 'abstrak-icon-accordion-item',
+    'class'           => 'gcb-saas-icon-accordion-item',
+    'data-block-name' => 'saas-icon-accordion-item',
     'data-props'      => wp_json_encode($props),
 ]);
 ?>

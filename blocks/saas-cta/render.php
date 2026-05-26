@@ -1,7 +1,7 @@
 <?php
 /**
- * Abstrak CTA — closing call-to-action section. Same dual-purpose
- * render pattern as abstrak-banner: server-side text preview + data-
+ * Saas CTA — closing call-to-action section. Same dual-purpose
+ * render pattern as saas-banner: server-side text preview + data-
  * props island for the React frontend.
  *
  * @var array  $attributes
@@ -24,8 +24,8 @@ $props = [
 ];
 
 $wrap = get_block_wrapper_attributes([
-    'class'           => 'gcb-abstrak-cta',
-    'data-block-name' => 'abstrak-cta',
+    'class'           => 'gcb-saas-cta',
+    'data-block-name' => 'saas-cta',
     'data-props'      => wp_json_encode($props),
 ]);
 

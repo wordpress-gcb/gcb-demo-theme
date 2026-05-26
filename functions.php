@@ -1,8 +1,8 @@
 <?php
 /**
- * GCB Abstrak — theme bootstrap.
+ * GCB SaaS Theme — theme bootstrap.
  *
- * Registers the three content types the Abstrak SaaS demo lives on
+ * Registers the three content types the Saas SaaS demo lives on
  * (project, testimonial, brand) and attaches typed gcb-lite fields to
  * each. Each CPT is REST-exposed so the headless React frontend can
  * query them at /wp/v2/{slug}.
@@ -11,7 +11,7 @@
  * defers all rendering to the React frontend. WP's only job in this
  * setup is to author content and expose it via REST.
  *
- * @package GCB_Abstrak
+ * @package GCB_SaaS_Theme
  */
 
 if (!defined('ABSPATH')) {
@@ -22,10 +22,10 @@ if (!defined('ABSPATH')) {
  * Theme-level dependency check.
  *
  * Everything below — CPT registration, the asset enqueue, even the
- * abstrak-* blocks themselves (via gcb-lite's BlockLoader which scans
+ * saas-* blocks themselves (via gcb-lite's BlockLoader which scans
  * this theme's blocks/ dir) — assumes the gcb-lite plugin is active.
  * Without it, the theme would white-screen the site the next time any
- * abstrak-* render.php runs.
+ * saas-* render.php runs.
  *
  * If gcb-lite is missing, register a single admin notice telling the
  * admin to install / activate it, then bail out so we don't register
@@ -37,7 +37,7 @@ if (!defined('ABSPATH')) {
  */
 if (!function_exists('gcblite_register_post_fields')) {
     add_action('admin_notices', static function () {
-        echo '<div class="notice notice-error"><p><strong>GCB Abstrak theme</strong> requires the <strong>GCB Lite</strong> plugin to be active. CPTs, fields, and the front-end block rendering all depend on it.</p></div>';
+        echo '<div class="notice notice-error"><p><strong>GCB SaaS Theme theme</strong> requires the <strong>GCB Lite</strong> plugin to be active. CPTs, fields, and the front-end block rendering all depend on it.</p></div>';
     });
     return;
 }
@@ -80,7 +80,7 @@ add_action('enqueue_block_assets', static function () {
 
     if (file_exists($css_path)) {
         wp_enqueue_style(
-            'gcb-abstrak-theme',
+            'gcb-saas-theme',
             $theme_uri . '/build/theme.css',
             [],
             (string) filemtime($css_path),
@@ -95,7 +95,7 @@ add_action('wp_enqueue_scripts', static function () {
 
     if (file_exists($js_path)) {
         wp_enqueue_script(
-            'gcb-abstrak-theme',
+            'gcb-saas-theme',
             $theme_uri . '/build/theme.js',
             [],
             (string) filemtime($js_path),
@@ -108,7 +108,7 @@ add_action('wp_enqueue_scripts', static function () {
         // from /public, WP doesn't).
         $image_base = esc_url($theme_uri . '/assets/images');
         wp_add_inline_script(
-            'gcb-abstrak-theme',
+            'gcb-saas-theme',
             'window.__GCB_IMAGE_BASE__ = ' . wp_json_encode($image_base) . ';',
             'before',
         );
@@ -118,7 +118,7 @@ add_action('wp_enqueue_scripts', static function () {
 /**
  * Project — a portfolio / case-study item.
  *
- * Field set mirrors the original Abstrak JSON fixture at
+ * Field set mirrors the original Saas JSON fixture at
  * src/data/project/projectData.json so the React frontend's existing
  * components can consume it without changes:
  *   { id, image, title, category, excerpt, body[] }
@@ -136,7 +136,7 @@ add_action('wp_enqueue_scripts', static function () {
  */
 add_action('init', static function () {
     register_post_type('project', [
-        'label'        => __('Projects', 'gcb-abstrak'),
+        'label'        => __('Projects', 'gcb-saas-theme'),
         'public'       => true,
         'show_in_rest' => true,
         'menu_icon'    => 'dashicons-portfolio',
@@ -146,7 +146,7 @@ add_action('init', static function () {
     ]);
 
     register_taxonomy('project_category', 'project', [
-        'label'        => __('Project Categories', 'gcb-abstrak'),
+        'label'        => __('Project Categories', 'gcb-saas-theme'),
         'public'       => true,
         'show_in_rest' => true,
         'hierarchical' => false,
@@ -159,12 +159,12 @@ add_action('init', static function () {
             'controls' => [
                 ['type'  => 'image',
                  'attributeKey' => 'cover',
-                 'label' => __('Cover image', 'gcb-abstrak'),
+                 'label' => __('Cover image', 'gcb-saas-theme'),
                  'validation' => ['required' => true]],
                 ['type'  => 'url',
                  'attributeKey' => 'live_url',
-                 'label' => __('Live URL', 'gcb-abstrak'),
-                 'helpText' => __('Optional — link to the live project.', 'gcb-abstrak')],
+                 'label' => __('Live URL', 'gcb-saas-theme'),
+                 'helpText' => __('Optional — link to the live project.', 'gcb-saas-theme')],
             ],
         ]);
     }
@@ -181,7 +181,7 @@ add_action('init', static function () {
  */
 add_action('init', static function () {
     register_post_type('testimonial', [
-        'label'        => __('Testimonials', 'gcb-abstrak'),
+        'label'        => __('Testimonials', 'gcb-saas-theme'),
         'public'       => true,
         'show_in_rest' => true,
         'menu_icon'    => 'dashicons-format-quote',
@@ -193,26 +193,26 @@ add_action('init', static function () {
             'controls' => [
                 ['type'  => 'textarea',
                  'attributeKey' => 'quote',
-                 'label' => __('Quote', 'gcb-abstrak'),
-                 'placeholder' => __('“ Donec metus lorem… ”', 'gcb-abstrak'),
+                 'label' => __('Quote', 'gcb-saas-theme'),
+                 'placeholder' => __('“ Donec metus lorem… ”', 'gcb-saas-theme'),
                  'validation' => ['required' => true, 'minLength' => 10]],
                 ['type'  => 'text',
                  'attributeKey' => 'author_name',
-                 'label' => __('Author name', 'gcb-abstrak'),
+                 'label' => __('Author name', 'gcb-saas-theme'),
                  'validation' => ['required' => true]],
                 ['type'  => 'text',
                  'attributeKey' => 'author_role',
-                 'label' => __('Author role', 'gcb-abstrak')],
+                 'label' => __('Author role', 'gcb-saas-theme')],
                 ['type'  => 'image',
                  'attributeKey' => 'author_image',
-                 'label' => __('Author headshot', 'gcb-abstrak')],
+                 'label' => __('Author headshot', 'gcb-saas-theme')],
                 ['type'  => 'text',
                  'attributeKey' => 'from_label',
-                 'label' => __('Source label', 'gcb-abstrak'),
-                 'placeholder' => __('e.g. Google, Yelp', 'gcb-abstrak')],
+                 'label' => __('Source label', 'gcb-saas-theme'),
+                 'placeholder' => __('e.g. Google, Yelp', 'gcb-saas-theme')],
                 ['type'  => 'image',
                  'attributeKey' => 'from_logo',
-                 'label' => __('Source logo', 'gcb-abstrak')],
+                 'label' => __('Source logo', 'gcb-saas-theme')],
             ],
         ]);
     }
@@ -225,7 +225,7 @@ add_action('init', static function () {
  */
 add_action('init', static function () {
     register_post_type('brand', [
-        'label'        => __('Brands', 'gcb-abstrak'),
+        'label'        => __('Brands', 'gcb-saas-theme'),
         'public'       => true,
         'show_in_rest' => true,
         'menu_icon'    => 'dashicons-awards',
@@ -237,11 +237,11 @@ add_action('init', static function () {
             'controls' => [
                 ['type'  => 'image',
                  'attributeKey' => 'logo',
-                 'label' => __('Logo', 'gcb-abstrak'),
+                 'label' => __('Logo', 'gcb-saas-theme'),
                  'validation' => ['required' => true]],
                 ['type'  => 'url',
                  'attributeKey' => 'website',
-                 'label' => __('Website', 'gcb-abstrak')],
+                 'label' => __('Website', 'gcb-saas-theme')],
             ],
         ]);
     }
@@ -258,8 +258,8 @@ add_action('admin_notices', static function () {
     }
     echo '<div class="notice notice-warning"><p>'
         . esc_html__(
-            'GCB Abstrak needs the GCB Lite plugin to register CPT fields. Install + activate it from the Plugins screen.',
-            'gcb-abstrak'
+            'GCB SaaS Theme needs the GCB Lite plugin to register CPT fields. Install + activate it from the Plugins screen.',
+            'gcb-saas-theme'
         )
         . '</p></div>';
 });

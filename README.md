@@ -1,4 +1,4 @@
-# GCB Abstrak — demo theme
+# GCB SaaS Theme — demo theme
 
 A WordPress theme that **only registers content**. It doesn't render
 anything — the public site lives in a separate Next.js frontend
@@ -16,7 +16,7 @@ to each CPT).
 - **`testimonial` CPT** — single-quote records. `quote`, `author_name`,
   `author_role`, `author_image`, `from_label`, `from_logo`.
 - **`brand` CPT** — logo strip entries. Just `logo` + `website`.
-- **`theme.json`** — the Abstrak palette (Primary `#5956E9`, four
+- **`theme.json`** — the Saas palette (Primary `#5956E9`, four
   gradients, full grayscale), DM Sans / Poppins typography, and a 7-step
   spacing scale. Block editor pickers (Colour, Font size, Spacing) all
   read from this.
@@ -24,7 +24,7 @@ to each CPT).
 ## Install
 
 In the Playground blueprint or any WordPress install, copy
-`examples/themes/gcb-abstrak/` into `wp-content/themes/` and activate
+`examples/themes/gcb-saas-theme/` into `wp-content/themes/` and activate
 it. The companion `gcb-lite` plugin must be active first.
 
 ## What's intentionally NOT here

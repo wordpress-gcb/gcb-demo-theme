@@ -10,7 +10,7 @@
  * Next.js GCBLITE_WP_URL at this install and visit the React site
  * instead.
  *
- * @package GCB_Abstrak
+ * @package GCB_SaaS_Theme
  */
 
 if (!defined('ABSPATH')) {
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 <main style="font-family: -apple-system, sans-serif; max-width: 640px; margin: 4rem auto; padding: 0 1.5rem; line-height: 1.5; color: #292930;">
-    <h1 style="color: #5956E9;">GCB Abstrak — WordPress backend</h1>
+    <h1 style="color: #5956E9;">GCB SaaS Theme — WordPress backend</h1>
     <p>This WordPress install is the editorial backend for a headless React frontend. The public site is rendered separately (Next.js, served from Vercel or wherever <code>gcb-next-starter</code> is deployed).</p>
     <p>If you arrived here by accident, point the <code>GCBLITE_WP_URL</code> env var of your React frontend at this install and browse there instead.</p>
     <p>Editor-side access: <a href="<?php echo esc_url(admin_url()); ?>">/wp-admin</a></p>

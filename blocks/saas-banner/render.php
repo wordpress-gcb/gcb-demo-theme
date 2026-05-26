@@ -1,14 +1,14 @@
 <?php
 /**
- * Abstrak Banner — hero section.
+ * Saas Banner — hero section.
  *
- * Renders the polished Abstrak markup directly in PHP — same classnames
+ * Renders the polished Saas markup directly in PHP — same classnames
  * (.banner banner-style-4, .container, .banner-content) the React
  * component produces. Theme CSS (gcb-demo-theme/build/theme.css) styles
  * it identically on the editor side and the frontend side.
  *
  * On the frontend the React hydration bundle still re-mounts the
- * AbstrakBanner component into this wrapper as a progressive
+ * SaasBanner component into this wrapper as a progressive
  * enhancement layer (adds the react-icons social SVGs, any animations).
  * In the editor the React bundle short-circuits (see entry.jsx
  * isWpEditor) so this PHP output is what authors see.
@@ -42,8 +42,8 @@ $props = [
 ];
 
 $wrap = get_block_wrapper_attributes([
-    'class'           => 'banner banner-style-4 gcb-abstrak-banner',
-    'data-block-name' => 'abstrak-banner',
+    'class'           => 'banner banner-style-4 gcb-saas-banner',
+    'data-block-name' => 'saas-banner',
     'data-props'      => wp_json_encode($props),
 ]);
 
@@ -61,7 +61,7 @@ $primary_rel    = $primary_target ? 'noopener noreferrer' : '';
 $paragraphs = preg_split('/\n{2,}/', $props['body']);
 
 // Resolve image-base URL for hardcoded /images/* paths from the React
-// design. Theme assets/images/ holds the bundled Abstrak decoration
+// design. Theme assets/images/ holds the bundled Saas decoration
 // shapes (bubble-29, line-7) the banner uses.
 $image_base = get_stylesheet_directory_uri() . '/assets/images';
 

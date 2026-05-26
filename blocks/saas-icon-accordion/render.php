@@ -1,14 +1,14 @@
 <?php
 /**
- * Abstrak Icon Accordion — heading + Repeater of accordion items.
+ * Saas Icon Accordion — heading + Repeater of accordion items.
  *
- * Authors add abstrak-icon-accordion-item children via the Repeater UI
+ * Authors add saas-icon-accordion-item children via the Repeater UI
  * the editor JS substitutes for the <repeater> marker tag below.
  * Children render via the standard InnerBlocks pipeline.
  *
  * The React frontend reads data-block-name + data-props for the heading
  * shell, then the BlockRenderer recurses into innerBlocks to render
- * each item via the AbstrakIconAccordionItem component.
+ * each item via the SaasIconAccordionItem component.
  *
  * @var array  $attributes
  * @var string $content
@@ -30,7 +30,7 @@ $heading_data = is_array($attributes['heading'] ?? null) ? $attributes['heading'
 $inner_items = [];
 if (isset($block->parsed_block['innerBlocks']) && is_array($block->parsed_block['innerBlocks'])) {
     foreach ($block->parsed_block['innerBlocks'] as $child) {
-        if (($child['blockName'] ?? '') !== 'gcb/abstrak-icon-accordion-item') continue;
+        if (($child['blockName'] ?? '') !== 'gcb/saas-icon-accordion-item') continue;
         $attrs = is_array($child['attrs'] ?? null) ? $child['attrs'] : [];
         $inner_items[] = [
             'blockName' => $child['blockName'],
@@ -49,8 +49,8 @@ $props = [
 ];
 
 $wrap = get_block_wrapper_attributes([
-    'class'           => 'gcb-abstrak-icon-accordion',
-    'data-block-name' => 'abstrak-icon-accordion',
+    'class'           => 'gcb-saas-icon-accordion',
+    'data-block-name' => 'saas-icon-accordion',
     'data-props'      => wp_json_encode($props),
 ]);
 
@@ -72,7 +72,7 @@ $heading_tag = in_array($props['heading']['level'], ['h2','h3','h4'], true)
     <?php endif; ?>
 
     <div style="display:flex;flex-direction:column;gap:0.75rem;">
-        <repeater allowedblocks='["gcb/abstrak-icon-accordion-item"]' addbuttonlabel="Add item">
+        <repeater allowedblocks='["gcb/saas-icon-accordion-item"]' addbuttonlabel="Add item">
         </repeater>
     </div>
 </div>

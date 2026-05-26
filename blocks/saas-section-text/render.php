@@ -1,8 +1,8 @@
 <?php
 /**
- * Abstrak Section text — heading + body + CTA, designed to live in
+ * Saas Section text — heading + body + CTA, designed to live in
  * one column of a two-column grid. Same data-props wrapper pattern
- * as the other abstrak-* blocks so the React frontend can substitute
+ * as the other saas-* blocks so the React frontend can substitute
  * the polished version.
  *
  * @var array  $attributes
@@ -29,8 +29,8 @@ $props = [
 ];
 
 $wrap = get_block_wrapper_attributes([
-    'class'           => 'gcb-abstrak-section-text',
-    'data-block-name' => 'abstrak-section-text',
+    'class'           => 'gcb-saas-section-text',
+    'data-block-name' => 'saas-section-text',
     'data-props'      => wp_json_encode($props),
 ]);
 

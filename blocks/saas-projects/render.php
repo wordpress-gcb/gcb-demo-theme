@@ -1,8 +1,8 @@
 <?php
 /**
- * Abstrak Projects — "Selected work" grid.
+ * Saas Projects — "Selected work" grid.
  *
- * Mirrors AbstrakProjectsView.jsx's markup so theme.css styles it
+ * Mirrors SaasProjectsView.jsx's markup so theme.css styles it
  * identically in the editor (where React doesn't hydrate) and on the
  * frontend (where React hydrates as progressive enhancement).
  *
@@ -87,8 +87,8 @@ $props = [
 ];
 
 $wrap = get_block_wrapper_attributes([
-    'class'           => 'section section-padding-equal bg-color-dark gcb-abstrak-projects',
-    'data-block-name' => 'abstrak-projects',
+    'class'           => 'section section-padding-equal bg-color-dark gcb-saas-projects',
+    'data-block-name' => 'saas-projects',
     'data-props'      => wp_json_encode($props),
 ]);
 

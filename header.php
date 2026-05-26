@@ -9,7 +9,7 @@
  * React boots — the page's first paint is just blank chrome for a
  * couple hundred ms.
  *
- * @package GCB_Abstrak
+ * @package GCB_SaaS_Theme
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> data-bs-theme="light">
