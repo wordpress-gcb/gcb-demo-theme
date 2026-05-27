@@ -165,6 +165,10 @@ add_action('init', static function () {
                  'attributeKey' => 'live_url',
                  'label' => __('Live URL', 'gcb-saas-theme'),
                  'helpText' => __('Optional — link to the live project.', 'gcb-saas-theme')],
+                ['type'  => 'richtext',
+                 'attributeKey' => 'case_study',
+                 'label' => __('Case study', 'gcb-saas-theme'),
+                 'helpText' => __('Optional formatted blurb that appears on the project detail page.', 'gcb-saas-theme')],
             ],
         ]);
     }
@@ -246,6 +250,96 @@ add_action('init', static function () {
         ]);
     }
 });
+
+/**
+ * Site-wide options page — header/footer copy + social links.
+ *
+ * Uses gcb-lite's Options registrar so we get the same typed controls
+ * (text, url, textarea, repeater) and the same validation we use for
+ * CPT meta. Headless frontend reads via /wp-json/gcblite/v1/options/site.
+ */
+add_action('init', static function () {
+    if (!function_exists('gcblite_register_options_fields')) {
+        return;
+    }
+    gcblite_register_options_fields('site', [
+        'page_title' => __('Site settings', 'gcb-saas-theme'),
+        'menu_title' => __('Site settings', 'gcb-saas-theme'),
+        'icon'       => 'dashicons-admin-site-alt3',
+        'controls'   => [
+            [
+                'attributeKey' => 'tagline',
+                'type'         => 'text',
+                'label'        => 'Header tagline',
+                'help'         => 'Short pitch shown beneath the logo in the site header.',
+                'default'      => '',
+            ],
+            [
+                'attributeKey' => 'footer_signoff',
+                'type'         => 'textarea',
+                'label'        => 'Footer signoff',
+                'help'         => 'Small print at the bottom of every page.',
+                'default'      => '',
+            ],
+            [
+                'attributeKey' => 'social_links',
+                'type'         => 'repeater',
+                'label'        => 'Social links',
+                'fields'       => [
+                    ['attributeKey' => 'label', 'type' => 'text', 'label' => 'Label'],
+                    ['attributeKey' => 'url',   'type' => 'url',  'label' => 'URL'],
+                ],
+                'default'      => [],
+            ],
+        ],
+    ]);
+});
+
+/**
+ * Demo: category-taxonomy fields. Lets editors give each category a
+ * cover image and accent colour that the headless frontend can read
+ * via /wp-json/gcblite/v1/terms/category/{id}/fields.
+ */
+add_action('init', static function () {
+    if (!function_exists('gcblite_register_taxonomy_fields')) {
+        return;
+    }
+    gcblite_register_taxonomy_fields('category', [
+        'controls' => [
+            ['attributeKey' => 'cover',  'type' => 'image', 'label' => 'Cover image'],
+            ['attributeKey' => 'accent', 'type' => 'color', 'label' => 'Accent colour'],
+            ['attributeKey' => 'tagline', 'type' => 'text', 'label' => 'Short tagline'],
+        ],
+    ]);
+}, 11);
+
+/**
+ * Demo: user-profile fields. Adds a "Profile extras" section to every
+ * user's profile screen. Headless frontends authenticated as the user
+ * can read via /wp-json/gcblite/v1/users/{id}/fields.
+ */
+add_action('init', static function () {
+    if (!function_exists('gcblite_register_user_fields')) {
+        return;
+    }
+    gcblite_register_user_fields([
+        'page_title' => __('Profile extras', 'gcb-saas-theme'),
+        'controls'   => [
+            ['attributeKey' => 'avatar',       'type' => 'image',    'label' => 'Custom avatar'],
+            ['attributeKey' => 'role_title',   'type' => 'text',     'label' => 'Role / Job title'],
+            ['attributeKey' => 'extended_bio', 'type' => 'textarea', 'label' => 'Long bio'],
+            ['attributeKey' => 'links',
+             'type'         => 'repeater',
+             'label'        => 'Profile links',
+             'fields'       => [
+                 ['attributeKey' => 'label', 'type' => 'text', 'label' => 'Label'],
+                 ['attributeKey' => 'url',   'type' => 'url',  'label' => 'URL'],
+             ],
+             'default'      => [],
+            ],
+        ],
+    ]);
+}, 11);
 
 /**
  * Light heads-up if the gcb-lite plugin isn't active. We could harder-
